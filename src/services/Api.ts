@@ -2,18 +2,17 @@ const headers = {
     "Content-Type": "application/json"
 }
 
-class Api {
-    static post(endpoint: string, body: any) {
-        return fetch(endpoint, {
-            method: 'POST',
-            headers: {
-                ...headers,
-            },
-            body: JSON.stringify(body),
-            mode: 'cors'
-        })
-            .then(response => response.json())
-    }
+export function queryFetch<T>(query: Object): Promise<T> {
+    return fetch('https://graphqlzero.almansi.me/api', {
+        method: 'POST',
+        headers: {
+            ...headers,
+        },
+        body: JSON.stringify({
+            query: query
+        }),
+        mode: 'cors'
+    })
+        .then(response => response.json())
 }
 
-export default Api;

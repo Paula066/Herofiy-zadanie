@@ -1,10 +1,11 @@
-import React, {FC, useState} from "react";
+import React, {FC} from "react";
 import {UserList, ShowMore} from './styled';
 import {useSelector} from "react-redux";
 import {useHistory} from 'react-router-dom';
 import {Routes} from "../../constants";
 import {IReduxState} from '../../';
 import {UserDataList} from "../../reducers/userDataList";
+import { Container } from '@material-ui/core';
 
 const UserView: FC = () => {
 
@@ -16,7 +17,7 @@ const UserView: FC = () => {
     }
 
     return (
-        <div className="container">
+        <Container maxWidth="md">
             <UserList>
                 <div>name</div>
                 <div>id</div>
@@ -37,11 +38,11 @@ const UserView: FC = () => {
                      address}, index) => (
                          <>
                             <UserList onClick={() => handleUserDetails(id)} key={index}>
-                                <div className="list">{name}</div>
-                                <div className="list">{id}</div>
-                                <div className="list">{username}</div>
-                                <div className="list">{email}</div>
-                                <div className="list">{phone}</div>
+                                <div className="list"><span>Name:</span>{name}</div>
+                                <div className="list"><span>Id:</span>{id}</div>
+                                <div className="list"><span>Username:</span>{username}</div>
+                                <div className="list"><span>Email:</span>{email}</div>
+                                <div className="list"><span>Phone:</span>{phone}</div>
                             </UserList>
                              <ShowMore key={index + 1}>
                                  <div className="box">
@@ -57,7 +58,7 @@ const UserView: FC = () => {
                              </ShowMore>
                         </>
                 ))}
-        </div>
+        </Container>
     )
 }
 

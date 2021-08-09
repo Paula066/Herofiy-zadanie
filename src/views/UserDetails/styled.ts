@@ -35,6 +35,10 @@ const UserDetailsWrapper = styled.div`
     height: calc(100vh - 100px);
     overflow: scroll;
     
+    @media (max-width: 1068px) {
+       height: calc(100vh - 300px);
+    }
+    
     &__box {    
       background-color: transparent;
       border: 2px solid rgb(251,143,32);
@@ -61,6 +65,10 @@ const UserDetailsWrapper = styled.div`
       > div {
         align-items: center;
         display: flex;
+      }
+      
+      svg {
+        cursor: pointer;
       }
       
       span {

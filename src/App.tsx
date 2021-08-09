@@ -21,7 +21,7 @@ const App: FC = () => {
             <GlobalStyle/>
             <UserDataListWorker />
             {!dataUser ? (
-                <div>Loading</div>
+                <div className="loading">Loading...</div>
             ) : (
                 <Router>
                     <Switch>

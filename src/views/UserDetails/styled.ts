@@ -35,6 +35,11 @@ const UserDetailsWrapper = styled.div`
     height: calc(100vh - 100px);
     overflow: scroll;
     
+    &__delete {
+      cursor:pointer;
+      padding: 0 10px;
+    }
+    
     &__box {    
       background-color: transparent;
       border: 2px solid rgb(251,143,32);

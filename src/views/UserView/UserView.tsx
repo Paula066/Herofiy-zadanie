@@ -1,4 +1,4 @@
-import React, {FC, useState} from "react";
+import React, {FC} from "react";
 import {UserList, ShowMore} from './styled';
 import {useSelector} from "react-redux";
 import {useHistory} from 'react-router-dom';
@@ -35,7 +35,7 @@ const UserView: FC = () => {
                      username,
                      website,
                      address}, index) => (
-                         <>
+                         <React.Fragment key={index}>
                             <UserList onClick={() => handleUserDetails(id)} key={index}>
                                 <div className="list">{name}</div>
                                 <div className="list">{id}</div>
@@ -55,7 +55,7 @@ const UserView: FC = () => {
                                  </div>
                                  <div className="box"><strong>Website</strong>{website}</div>
                              </ShowMore>
-                        </>
+                        </React.Fragment>
                 ))}
         </div>
     )

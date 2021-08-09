@@ -85,9 +85,6 @@ const UserDetails: FC = () => {
     ) : (
         <UserDetailsWrapper className="container">
             <div className="name"> Name: {usersDetails!.username}</div>
-            <Link to={Routes.HOME} />
-            <ArrowBackIcon className="arrowBack" onClick={redirectToHomePage}/>
-            <Button className="addTodoList" variant="contained" color="secondary" onClick={handleOpenAddTodoListModal}>Add todolist</Button>
             {todoList ? <AddTodoListModal closeModal={handleCloseModal} /> : ''}
             <div className="todoList">
                 {usersDetails?.todos.data.map((todo, index) => (
@@ -110,6 +107,9 @@ const UserDetails: FC = () => {
                     </div>
                 ))}
             </div>
+            <Link to={Routes.HOME} />
+            <ArrowBackIcon className="arrowBack" onClick={redirectToHomePage}/>
+            <Button className="addTodoList" variant="contained" color="secondary" onClick={handleOpenAddTodoListModal}>Add todolist</Button>
         </UserDetailsWrapper>
     )
 }

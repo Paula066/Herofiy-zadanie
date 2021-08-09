@@ -2,15 +2,23 @@ import styled from 'styled-components'
 
 export const UserList = styled.div`
   display: grid;
-  margin-bottom: 20px;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   background-color: white;
-  border: 1px solid #E5EAF4;
   padding: 16px 16px;
   cursor: pointer;
+  grid-gap: 20px;
+  border: 1px solid white;
+  position: relative;
   
   &:hover {
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
+  }
+  
+  span {
+    position: absolute;
+    right: -100px;
+    text-decoration: underline;
+    color: white;
   }
  
   
@@ -36,9 +44,25 @@ export const UserList = styled.div`
 
 export const ShowMore = styled.div`
     color: white;
-    border-bottom: 1px solid white;
-    padding-bottom: 5px;
     margin-bottom: 20px;
-    display: inline-flex;
+    display: grid;
     cursor: pointer;
+    width: 100%;
+    border: 1px solid white;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 20px 0;
+    cursor: initial;
+    
+    .box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+   
+`
+
+export const UserListWrapper = styled.div`
+  .header {
+    display: flex;
+  }
 `

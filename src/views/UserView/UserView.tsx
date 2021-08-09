@@ -1,7 +1,7 @@
-import React, {FC} from "react";
-import {UserList} from './styled';
+import React, {FC, useState} from "react";
+import {UserList, ShowMore} from './styled';
 import {useSelector} from "react-redux";
-import { useHistory } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import {Routes} from "../../constants";
 import {IReduxState} from '../../';
 import {UserDataList} from "../../reducers/userDataList";
@@ -19,10 +19,10 @@ const UserView: FC = () => {
         <div className="container">
             <UserList>
                 <div>name</div>
+                <div>id</div>
                 <div>username</div>
                 <div>email</div>
-                <div>website</div>
-                <div>Address</div>
+                <div>phone</div>
             </UserList>
             {dataUser?.data.users.data.map(
                 ({
@@ -35,14 +35,28 @@ const UserView: FC = () => {
                      username,
                      website,
                      address}, index) => (
-                <UserList onClick={() => handleUserDetails(id)} key={index}>
-                    <div className="list">{name}</div>
-                    <div className="list">{username}</div>
-                    <div className="list">{email}</div>
-                    <div className="list">{website}</div>
-                    <div className="list">{address.city}</div>
-                </UserList>
-            ))}
+                         <>
+                            <UserList onClick={() => handleUserDetails(id)} key={index}>
+                                <div className="list">{name}</div>
+                                <div className="list">{id}</div>
+                                <div className="list">{username}</div>
+                                <div className="list">{email}</div>
+                                <div className="list">{phone}</div>
+                            </UserList>
+                             <ShowMore key={index + 1}>
+                                 <div className="box">
+                                     <strong>Address:</strong>
+                                     <div>{address.city}</div>
+                                     <div>{address.street}</div>
+                                 </div>
+                                 <div className="box">
+                                     <strong>Company:</strong>
+                                     <div>{company.name}</div>
+                                 </div>
+                                 <div className="box"><strong>Website</strong>{website}</div>
+                             </ShowMore>
+                        </>
+                ))}
         </div>
     )
 }

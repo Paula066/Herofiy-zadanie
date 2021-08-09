@@ -1,5 +1,5 @@
-import React, {FC, useEffect, useState} from "react";
-import {UsersData} from "../../interfaces";
+import React, {FC, useState} from "react";
+import Checkbox from '@material-ui/core/Checkbox';
 import {Link, useParams, useHistory} from 'react-router-dom';
 import UserDetailsWrapper from './styled';
 import {Routes} from "../../constants";
@@ -50,19 +50,31 @@ const UserDetails: FC = () => {
     }
 
     const handleCompletedStatus = (e: React.FormEvent<HTMLInputElement>) => {
-
         const isCheckedInput =  e.currentTarget.checked;
         const id = parseInt(e.currentTarget.value, 10);
-        setIsChecked(isCheckedInput)
 
         queryFetch<IGETList>(`
             mutation {
-                updateTodo(id: ${id}, input: {completed: ${isChecked}}) {
+                updateTodo(id: ${id}, input: {completed: ${isCheckedInput}}) {
                     completed,
                     title
               }
             }`)
-            .then(response => {
+            .then((response) => {
+                setIsChecked(isCheckedInput)
+                dispatch({type: UserActionTypes.UPDATE, payload: true});
+            })
+    }
+
+    const handleDeleteList = (id: string) => {
+        const idList = parseInt(id, 10);
+
+        queryFetch<IGETList>(`
+            mutation {
+                deleteTodo(id: ${idList}) 
+                }
+            `)
+            .then(() => {
                 dispatch({type: UserActionTypes.UPDATE, payload: true});
             })
     }
@@ -83,12 +95,16 @@ const UserDetails: FC = () => {
                         <div className="todoList__titleBox" key={index}>
                             <span><strong>Title:</strong> {todo.title}</span>
                             <div>
-                                <input
-                                    type="checkbox"
+                                <Checkbox
                                     value={todo.id}
                                     onChange={(e) => handleCompletedStatus(e)}
+                                    inputProps={{ 'aria-label': 'primary checkbox' }}
+                                    // checked={isChecked}
                                 />
-                                <DeleteIcon className="todoList__delete" />
+                                <DeleteIcon
+                                    data-id={todo.id}
+                                    onClick={() => handleDeleteList(todo.id)}
+                                    className="todoList__delete" />
                             </div>
                         </div>
                     </div>

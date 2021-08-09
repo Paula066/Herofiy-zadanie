@@ -43,7 +43,6 @@ const UserDetailsWrapper = styled.div`
       display: inline-flex;
       flex-direction: column;
       align-items: flex-start;
-      min-height: 30px;
       padding: 20px;
       position: relative;
       box-shadow: inset 1px 1px 0 rgb(0 0 0 / 10%), inset 0 -1px 0 rgb(0 0 0 / 7%);
@@ -57,10 +56,15 @@ const UserDetailsWrapper = styled.div`
       display: flex;
       justify-content: space-between;
       width: 100%;
+      align-items: center;
       
       > div {
         align-items: center;
         display: flex;
+      }
+      
+      span {
+        margin-right: 5px;
       }
     }
     

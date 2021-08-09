@@ -2,6 +2,8 @@ import React, {FC, useState} from "react";
 import {AddTodoListModalWrapperOverlay, AddTodoListModalWrapper} from './styled'
 import CloseButton from '../CloseButton/CloseButton'
 import {queryFetch} from "../../services/Api";
+import {useDispatch} from 'react-redux';
+import {UserActionTypes} from "../../reducers/userDataList";
 
 interface AddTodoListModalProps {
     closeModal: () => void;
@@ -22,7 +24,7 @@ interface ToDoListProps {
 const AddTodoListModal: FC<AddTodoListModalProps> = ({closeModal}) => {
 
     const [titleTodo, setTitleTodo] = useState('');
-    const [todoLists, setTodoList] = useState<ToDoListProps>();
+    const dispatch = useDispatch();
 
     const handleInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -39,23 +41,18 @@ const AddTodoListModal: FC<AddTodoListModalProps> = ({closeModal}) => {
                     id
                 }
             }`)
-            .then(response => {
-                console.log(response)
-                setTodoList(response.data.createTodo)
-                // closeModal()
+            .then(() => {
+                dispatch({type: UserActionTypes.UPDATE, payload: true});
+                closeModal();
             })
     }
 
-    console.log(todoLists);
 
     return (
         <>
             <AddTodoListModalWrapperOverlay />
             <AddTodoListModalWrapper>
                 <p>Todolist name</p>
-                <div>
-                    {todoLists?.title}
-                </div>
                 <input onChange={handleInputValue} placeholder="New list ..." type="text"/>
                 <button onClick={handleCreateToDoList}>create</button>
                 <CloseButton onClick={closeModal} />

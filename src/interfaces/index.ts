@@ -30,7 +30,7 @@ export interface Company {
 }
 
 export interface Todos {
-    data: Todo
+    data: Todo[]
 }
 
 export interface Todo {

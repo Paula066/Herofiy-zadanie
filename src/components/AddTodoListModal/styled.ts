@@ -40,6 +40,10 @@ export const AddTodoListModalWrapper = styled.div`
     padding: 20px;
     border-radius: 20px;
     
+    @media (max-width: 600px) {
+          width: 80%;
+      }
+    
     p {
       color: rgb(251,143,32);
     }
@@ -58,7 +62,6 @@ export const AddTodoListModalWrapper = styled.div`
       text-align: right;
       margin-top: 20px;
       cursor: pointer;
-     
     }
     
     input {

@@ -70,6 +70,7 @@ export const ShowMore = styled.div`
     border: 1px solid white;
     grid-template-columns: 1fr 1fr 1fr;
     padding: 20px 0;
+    box-sizing: border-box;
     
       @media (max-width: 500px) {
           grid-template-columns: initial;
